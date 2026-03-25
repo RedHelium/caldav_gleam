@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:multistatus xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
+  <d:response>
+    <d:href>/dav/calendars/demo/work/event-1.ics</d:href>
+    <d:propstat>
+      <d:prop>
+        <d:getetag>"event-1-etag"</d:getetag>
+        <d:getcontenttype>text/calendar; charset=utf-8; component=VEVENT</d:getcontenttype>
+        <c:calendar-data>BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//caldav_gleam//EN
+BEGIN:VEVENT
+UID:event-1
+DTSTAMP:20260325T010000Z
+DTSTART:20260326T090000Z
+DTEND:20260326T100000Z
+SUMMARY:Project sync
+END:VEVENT
+END:VCALENDAR</c:calendar-data>
+      </d:prop>
+      <d:status>HTTP/1.1 200 OK</d:status>
+    </d:propstat>
+  </d:response>
+  <d:response>
+    <d:href>/dav/calendars/demo/work/event-2.ics</d:href>
+    <d:propstat>
+      <d:prop>
+        <d:getetag>"event-2-etag"</d:getetag>
+        <d:getcontenttype>text/calendar; charset=utf-8; component=VEVENT</d:getcontenttype>
+        <c:calendar-data>BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//caldav_gleam//EN
+BEGIN:VEVENT
+UID:event-2
+DTSTAMP:20260325T020000Z
+DTSTART:20260327T120000Z
+DTEND:20260327T130000Z
+SUMMARY:Lunch with team
+END:VEVENT
+END:VCALENDAR</c:calendar-data>
+      </d:prop>
+      <d:status>HTTP/1.1 200 OK</d:status>
+    </d:propstat>
+  </d:response>
+</d:multistatus>

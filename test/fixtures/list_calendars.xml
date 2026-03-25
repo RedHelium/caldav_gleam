@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:multistatus
+  xmlns:d="DAV:"
+  xmlns:c="urn:ietf:params:xml:ns:caldav"
+  xmlns:cs="http://calendarserver.org/ns/"
+>
+  <d:response>
+    <d:href>/dav/calendars/demo/</d:href>
+    <d:propstat>
+      <d:prop>
+        <d:displayname>Calendar Home</d:displayname>
+        <d:resourcetype>
+          <d:collection />
+        </d:resourcetype>
+      </d:prop>
+      <d:status>HTTP/1.1 200 OK</d:status>
+    </d:propstat>
+  </d:response>
+  <d:response>
+    <d:href>/dav/calendars/demo/work/</d:href>
+    <d:propstat>
+      <d:prop>
+        <d:displayname>Work</d:displayname>
+        <c:calendar-description>Work calendar</c:calendar-description>
+        <cs:getctag>work-ctag-1</cs:getctag>
+        <d:resourcetype>
+          <d:collection />
+          <c:calendar />
+        </d:resourcetype>
+      </d:prop>
+      <d:status>HTTP/1.1 200 OK</d:status>
+    </d:propstat>
+  </d:response>
+  <d:response>
+    <d:href>/dav/calendars/demo/personal/</d:href>
+    <d:propstat>
+      <d:prop>
+        <d:displayname>Personal</d:displayname>
+        <c:calendar-description>Personal events</c:calendar-description>
+        <cs:getctag>personal-ctag-7</cs:getctag>
+        <d:resourcetype>
+          <d:collection />
+          <c:calendar />
+        </d:resourcetype>
+      </d:prop>
+      <d:status>HTTP/1.1 200 OK</d:status>
+    </d:propstat>
+  </d:response>
+</d:multistatus>
