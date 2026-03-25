@@ -91,7 +91,10 @@ pub fn update_event(
     client: client,
     method: raw_http.Put,
     url: event_url,
-    headers: [#("content-type", "text/calendar; charset=utf-8"), ..extra_headers],
+    headers: [
+      #("content-type", "text/calendar; charset=utf-8"),
+      ..extra_headers
+    ],
     body: ics_data,
   ))
 

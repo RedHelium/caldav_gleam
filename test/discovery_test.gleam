@@ -17,7 +17,9 @@ pub fn parse_calendar_home_set_test() {
 
 pub fn parse_current_user_principal_returns_error_for_invalid_xml_test() {
   let assert Error(error.XmlError(_)) =
-    xml_response.parse_current_user_principal("<d:multistatus xmlns:d=\"DAV:\" />")
+    xml_response.parse_current_user_principal(
+      "<d:multistatus xmlns:d=\"DAV:\" />",
+    )
 }
 
 fn principal_fixture() -> String {

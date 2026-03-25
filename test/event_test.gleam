@@ -6,7 +6,8 @@ import gleam/option
 import gleam/string
 
 pub fn parse_calendar_query_extracts_events_test() {
-  let assert Ok(events) = xml_response.parse_calendar_query(calendar_query_fixture())
+  let assert Ok(events) =
+    xml_response.parse_calendar_query(calendar_query_fixture())
 
   assert list.length(events) == 2
 
@@ -14,12 +15,14 @@ pub fn parse_calendar_query_extracts_events_test() {
 
   assert first.href == "/dav/calendars/demo/work/event-1.ics"
   assert first.etag == option.Some("\"event-1-etag\"")
-  assert first.content_type == option.Some("text/calendar; charset=utf-8; component=VEVENT")
+  assert first.content_type
+    == option.Some("text/calendar; charset=utf-8; component=VEVENT")
   assert string.contains(first.calendar_data, "UID:event-1")
 
   assert second.href == "/dav/calendars/demo/work/event-2.ics"
   assert second.etag == option.Some("\"event-2-etag\"")
-  assert second.content_type == option.Some("text/calendar; charset=utf-8; component=VEVENT")
+  assert second.content_type
+    == option.Some("text/calendar; charset=utf-8; component=VEVENT")
   assert string.contains(second.calendar_data, "UID:event-2")
 }
 
@@ -34,7 +37,10 @@ pub fn report_calendar_query_all_contains_required_filter_test() {
 
 pub fn report_calendar_query_range_serializes_bounds_test() {
   let body =
-    xml_request.report_calendar_query_range(types.TimeRange(start: 1700, end: 1800))
+    xml_request.report_calendar_query_range(types.TimeRange(
+      start: 1700,
+      end: 1800,
+    ))
 
   assert string.contains(body, "<c:time-range start=\"1700\" end=\"1800\" />")
 }

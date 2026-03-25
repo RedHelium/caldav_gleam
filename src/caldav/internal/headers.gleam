@@ -29,12 +29,8 @@ pub fn merge_headers(
   left: List(#(String, String)),
   right: List(#(String, String)),
 ) -> List(#(String, String)) {
-  list.fold(
-    over: right,
-    from: left,
-    with: fn(headers, header) {
-      let #(key, value) = header
-      list.key_set(headers, key, value)
-    },
-  )
+  list.fold(over: right, from: left, with: fn(headers, header) {
+    let #(key, value) = header
+    list.key_set(headers, key, value)
+  })
 }

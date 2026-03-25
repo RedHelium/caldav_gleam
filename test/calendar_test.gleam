@@ -5,7 +5,8 @@ import gleam/option
 import gleam/string
 
 pub fn parse_calendars_filters_non_calendar_collections_test() {
-  let assert Ok(calendars) = xml_response.parse_calendars(list_calendars_fixture())
+  let assert Ok(calendars) =
+    xml_response.parse_calendars(list_calendars_fixture())
 
   assert list.length(calendars) == 2
 

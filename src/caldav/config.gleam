@@ -6,6 +6,7 @@ pub type Config {
 }
 
 const default_user_agent = "caldav_gleam/1.0.0"
+
 const default_timeout_ms = 10_000
 
 /// Creates a config with the required base URL and authentication settings.

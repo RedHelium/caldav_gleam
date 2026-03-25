@@ -50,7 +50,9 @@ pub fn discover(
   discovery.discover(caldav_client)
 }
 
-pub fn find_principal(caldav_client: types.Client) -> Result(String, error.Error) {
+pub fn find_principal(
+  caldav_client: types.Client,
+) -> Result(String, error.Error) {
   discovery.find_principal(caldav_client)
 }
 

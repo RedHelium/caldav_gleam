@@ -1,5 +1,5 @@
 name = "caldav_gleam"
-version = "0.1.0"
+version = "1.0.0"
 
 description = "A lightweight Gleam CalDAV client library for discovery, calendars, and events."
 licences = ["Apache-2.0"]

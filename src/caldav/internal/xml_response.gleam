@@ -9,14 +9,12 @@ import gleam/string
 pub fn parse_current_user_principal(body: String) -> Result(String, error.Error) {
   let xml = normalize_xml(body)
 
-  use principal <- result.try(
-    option.to_result(
-      extract_tag_text(xml, "current-user-principal")
+  use principal <- result.try(option.to_result(
+    extract_tag_text(xml, "current-user-principal")
       |> option.then(fn(section) { extract_tag_text(section, "href") })
       |> option.map(string.trim),
-      error.XmlError("Could not parse current-user-principal href"),
-    ),
-  )
+    error.XmlError("Could not parse current-user-principal href"),
+  ))
 
   Ok(principal)
 }
@@ -25,20 +23,20 @@ pub fn parse_current_user_principal(body: String) -> Result(String, error.Error)
 pub fn parse_calendar_home_set(body: String) -> Result(String, error.Error) {
   let xml = normalize_xml(body)
 
-  use home_set <- result.try(
-    option.to_result(
-      extract_tag_text(xml, "calendar-home-set")
+  use home_set <- result.try(option.to_result(
+    extract_tag_text(xml, "calendar-home-set")
       |> option.then(fn(section) { extract_tag_text(section, "href") })
       |> option.map(string.trim),
-      error.XmlError("Could not parse calendar-home-set href"),
-    ),
-  )
+    error.XmlError("Could not parse calendar-home-set href"),
+  ))
 
   Ok(home_set)
 }
 
 /// Parses calendar collection entries from a DAV multistatus response.
-pub fn parse_calendars(body: String) -> Result(List(types.Calendar), error.Error) {
+pub fn parse_calendars(
+  body: String,
+) -> Result(List(types.Calendar), error.Error) {
   let xml = normalize_xml(body)
 
   xml
@@ -48,7 +46,9 @@ pub fn parse_calendars(body: String) -> Result(List(types.Calendar), error.Error
 }
 
 /// Parses calendar object resources from a CalDAV calendar-query response.
-pub fn parse_calendar_query(body: String) -> Result(List(types.Event), error.Error) {
+pub fn parse_calendar_query(
+  body: String,
+) -> Result(List(types.Event), error.Error) {
   let xml = normalize_xml(body)
 
   xml
@@ -63,12 +63,10 @@ fn parse_calendar_response(block: String) -> Result(types.Calendar, Nil) {
     True -> {
       let property_block = property_source(block)
 
-      use href <- result.try(
-        option.to_result(
-          extract_tag_text(block, "href") |> option.map(string.trim),
-          Nil,
-        ),
-      )
+      use href <- result.try(option.to_result(
+        extract_tag_text(block, "href") |> option.map(string.trim),
+        Nil,
+      ))
 
       let display_name =
         extract_tag_text(property_block, "displayname")
@@ -96,19 +94,15 @@ fn parse_calendar_response(block: String) -> Result(types.Calendar, Nil) {
 fn parse_event_response(block: String) -> Result(types.Event, Nil) {
   let property_block = property_source(block)
 
-  use href <- result.try(
-    option.to_result(
-      extract_tag_text(block, "href") |> option.map(string.trim),
-      Nil,
-    ),
-  )
+  use href <- result.try(option.to_result(
+    extract_tag_text(block, "href") |> option.map(string.trim),
+    Nil,
+  ))
 
-  use calendar_data <- result.try(
-    option.to_result(
-      extract_tag_text(property_block, "calendar-data"),
-      Nil,
-    ),
-  )
+  use calendar_data <- result.try(option.to_result(
+    extract_tag_text(property_block, "calendar-data"),
+    Nil,
+  ))
 
   let etag =
     extract_tag_text(property_block, "getetag")
