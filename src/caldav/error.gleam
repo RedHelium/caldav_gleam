@@ -10,6 +10,7 @@ pub type Error {
   Unauthorized
   Conflict
   ValidationError(message: String)
+  UnknownError
 }
 
 /// Renders an error as a readable string.
@@ -28,5 +29,6 @@ pub fn to_string(err: Error) -> String {
     Unauthorized -> "[caldav_gleam] Unauthorized error"
     Conflict -> "[caldav_gleam] Conflict Error"
     ValidationError(message) -> "[caldav_gleam] Validation Error: " <> message
+    UnknownError -> "[caldav_gleam] Unknown error"
   }
 }

@@ -5,15 +5,17 @@ pub type Config {
   Config(base_url: String, auth: auth.Auth, user_agent: String, timeout_ms: Int)
 }
 
+const default_user_agent = "caldav_gleam/1.0.0"
+const default_timeout_ms = 10_000
+
 /// Creates a config with the required base URL and authentication settings.
-pub fn new(base_url: String, auth) -> Config {
+pub fn new(base_url: String, auth: auth.Auth) -> Config {
   Config(
     base_url: base_url,
     auth: auth,
-    user_agent: "TODO add default",
-    timeout_ms: 200,
+    user_agent: default_user_agent,
+    timeout_ms: default_timeout_ms,
   )
-  // TODO add default timeout
 }
 
 /// Returns a copy of the config with a custom user agent.

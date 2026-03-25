@@ -43,12 +43,8 @@ pub fn request(
     |> httpc.timeout(client.config.timeout_ms)
 
   use resp <- result.try(
-    // Подсказка:
-    // Здесь можно позже аккуратно преобразовать ошибку httpc в строку.
-    // Для первого шага достаточно вернуть стабильный TransportError
-    // с простым сообщением вроде "HTTP transport failed".
     httpc.dispatch(config, req)
-    |> result.map_error(fn(e) { error.TransportError("TODO stringify") }),
+    |> result.map_error(fn(_) { error.TransportError("HTTP transport failed") }),
   )
 
   Ok(HttpResponse(resp.status, resp.headers, resp.body))
